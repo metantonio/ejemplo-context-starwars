@@ -2,13 +2,12 @@ const BASE_URL = "https://swapi.dev/api/";
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			characters: [],
-			planets: [],
-			vehicles: []
+			characters: []			
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
 			getCharacters: async () => {
+				//let store = getStore();
 				let url = `${BASE_URL}people/`;
 				try {
 					let response = await fetch(url);
@@ -16,30 +15,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({
 						characters: responseObject.results
 					});
-				} catch (error) {
-					console.log(error);
-				}
-			},
-			getPlanets: async () => {
-				let url = `${BASE_URL}planets/`;
-				try {
-					let response = await fetch(url);
-					let responseObject = await response.json();
-					setStore({
-						planets: responseObject.results
-					});
-				} catch (error) {
-					console.log(error);
-				}
-			},
-			getVehicles: async () => {
-				let url = `${BASE_URL}vehicles/`;
-				try {
-					let response = await fetch(url);
-					let responseObject = await response.json();
-					setStore({
-						vehicles: responseObject.results
-					});
+					//console.log(store.characters)
 				} catch (error) {
 					console.log(error);
 				}
